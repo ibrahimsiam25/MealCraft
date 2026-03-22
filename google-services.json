@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "470629251802",
+    "project_id": "mealcraft-e46c7",
+    "storage_bucket": "mealcraft-e46c7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470629251802:android:d2e90b9091ba82103c83e3",
+        "android_client_info": {
+          "package_name": "com.siam.mealcraft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMRteCCSKUt2u9pyZb8pE4o_Z9XMsdWf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

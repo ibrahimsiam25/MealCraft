@@ -12,7 +12,6 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,30 +36,37 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.common.jvm)
+    implementation(libs.room.rxjava3)
+    annotationProcessor(libs.room.compiler)
+
+    // RxJava
+    implementation(libs.rxjava)
+    implementation(libs.rxandroid)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.rxjava3.retrofit.adapter)
 
     // UI
     implementation(libs.recyclerview)
+    implementation(libs.glide)
+    implementation(libs.lottie)
 
     // Navigation
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
 
-    // Networking
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-
-    // Images
-    implementation(libs.glide)
-
-    // Animations
-    implementation(libs.lottie)
-
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
 
+    // Testing
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }
