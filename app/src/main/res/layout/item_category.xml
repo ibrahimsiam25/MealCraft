@@ -13,20 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Category Image -->
+
         <ImageView
             android:id="@+id/categoryImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
 
-        <!-- Dark Overlay -->
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/gradient_meal_overlay" />
 
-        <!-- Category Name -->
+
         <TextView
             android:id="@+id/categoryName"
             android:layout_width="wrap_content"
