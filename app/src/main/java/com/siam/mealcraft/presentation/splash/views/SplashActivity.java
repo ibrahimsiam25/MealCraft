@@ -1,4 +1,4 @@
-package com.siam.mealcraft;
+package com.siam.mealcraft.presentation.splash.views;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -7,12 +7,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import com.airbnb.lottie.LottieAnimationView;
+import com.siam.mealcraft.MainActivity;
+import com.siam.mealcraft.R;
+import com.siam.mealcraft.presentation.auth.views.AuthActivity;
+import com.siam.mealcraft.data.repo.AuthRepo;
+import com.siam.mealcraft.presentation.splash.presenter.SplashPresenter;
+import com.siam.mealcraft.presentation.splash.presenter.SplashPresenterImpl;
+
 import android.widget.TextView;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements SplashView {
 
     private final int FALLBACK_DELAY = 3000;
     private final Handler handler = new Handler();
+    private SplashPresenter presenter;
 
     private final Runnable fallback = new Runnable() {
         @Override
@@ -25,6 +33,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        presenter = new SplashPresenterImpl(this, new AuthRepo());
 
         LottieAnimationView lottie = findViewById(R.id.lottieSplash);
         TextView title = findViewById(R.id.splashTitle);
@@ -52,7 +62,18 @@ public class SplashActivity extends AppCompatActivity {
     private void goMain() {
         if (isFinishing()) return;
         handler.removeCallbacks(fallback);
+        presenter.checkAuthStatus();
+    }
+
+    @Override
+    public void navigateToMain() {
         startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    @Override
+    public void navigateToAuth() {
+        startActivity(new Intent(this, AuthActivity.class));
         finish();
     }
 
