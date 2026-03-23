@@ -83,4 +83,8 @@ public class FirebaseAuthService implements AuthService {
     public boolean isUserLoggedIn() {
         return mAuth.getCurrentUser() != null;
     }
+
+    public void logout() {
+        mAuth.signOut();
+    }
 }

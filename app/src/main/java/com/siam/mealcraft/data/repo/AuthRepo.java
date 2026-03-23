@@ -27,4 +27,8 @@ public class AuthRepo {
     public boolean isUserLoggedIn() {
         return authService.isUserLoggedIn();
     }
+
+    public void logout() {
+        ((FirebaseAuthService) authService).logout();
+    }
 }
