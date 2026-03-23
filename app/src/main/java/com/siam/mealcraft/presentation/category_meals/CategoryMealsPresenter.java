@@ -62,7 +62,9 @@ public class CategoryMealsPresenter implements ICategoryMealsPresenter {
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> { /* toggle success handled by reactive list if needed */ },
+                        () -> {
+                            repo.syncFavourites().subscribe();
+                        },
                         error -> view.showError(error.getMessage())
                 )
         );

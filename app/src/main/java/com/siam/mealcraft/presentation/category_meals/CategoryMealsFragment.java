@@ -30,6 +30,8 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
     private TextView errorText;
     private Toolbar toolbar;
     private String categoryName;
+    private CategoryMealsAdapter adapter;
+    private io.reactivex.rxjava3.disposables.Disposable favStateDisposable;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +62,15 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
 
         rvMeals.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
+        favStateDisposable = com.siam.mealcraft.data.repo.FavouriteStateManager.getInstance()
+                .getFavouriteIds()
+                .observeOn(io.reactivex.rxjava3.android.schedulers.AndroidSchedulers.mainThread())
+                .subscribe(ids -> {
+                    if (adapter != null) {
+                        adapter.setFavouriteIds(ids);
+                    }
+                });
+
         presenter.loadMeals(categoryName);
     }
 
@@ -67,9 +78,13 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
     public void showMeals(List<FilteredMeal> meals) {
         errorText.setVisibility(View.GONE);
         rvMeals.setVisibility(View.VISIBLE);
-        rvMeals.setAdapter(new CategoryMealsAdapter(meals, meal -> { 
+        adapter = new CategoryMealsAdapter(meals, meal -> {
             navigateToDetails(meal.getIdMeal());
-        }, presenter::toggleFavourite));
+        }, presenter::toggleFavourite);
+        rvMeals.setAdapter(adapter);
+
+        // Initialize icons for the current favourite state.
+        adapter.setFavouriteIds(com.siam.mealcraft.data.repo.FavouriteStateManager.getInstance().getCurrentFavourites());
     }
 
     @Override
@@ -101,6 +116,9 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (favStateDisposable != null && !favStateDisposable.isDisposed()) {
+            favStateDisposable.dispose();
+        }
         presenter.onDestroy();
     }
 }

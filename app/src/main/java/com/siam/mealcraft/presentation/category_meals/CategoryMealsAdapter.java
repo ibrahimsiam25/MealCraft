@@ -13,13 +13,16 @@ import com.bumptech.glide.Glide;
 import com.siam.mealcraft.R;
 import com.siam.mealcraft.data.models.meal.FilteredMeal;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdapter.MealViewHolder> {
 
     private final List<FilteredMeal> meals;
     private final OnMealClickListener clickListener;
     private final OnFavouriteClickListener favClickListener;
+    private Set<String> favoriteIds = new HashSet<>();
 
     public interface OnMealClickListener {
         void onMealClick(FilteredMeal meal);
@@ -53,7 +56,8 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
 
         // Intial favored state to be configured appropriately (if list contains fav state) 
         // For now, use border. The presenter can update the state.
-        holder.btnFav.setImageResource(R.drawable.ic_favorite_border);
+        boolean isFav = favoriteIds.contains(meal.getIdMeal());
+        holder.btnFav.setImageResource(isFav ? R.drawable.ic_favorite : R.drawable.ic_favorite_border);
 
         holder.itemView.setOnClickListener(v -> clickListener.onMealClick(meal));
         holder.btnFav.setOnClickListener(v -> favClickListener.onFavouriteClick(meal));
@@ -62,6 +66,11 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
     @Override
     public int getItemCount() {
         return meals != null ? meals.size() : 0;
+    }
+
+    public void setFavouriteIds(Set<String> favoriteIds) {
+        this.favoriteIds = favoriteIds != null ? favoriteIds : new HashSet<>();
+        notifyDataSetChanged();
     }
 
     static class MealViewHolder extends RecyclerView.ViewHolder {
