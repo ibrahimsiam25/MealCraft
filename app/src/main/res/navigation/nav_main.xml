@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -28,5 +28,25 @@
         android:name="com.siam.mealcraft.presentation.settings.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/categoryMealsFragment"
+        android:name="com.siam.mealcraft.presentation.category_meals.CategoryMealsFragment"
+        android:label="Category Meals"
+        tools:layout="@layout/fragment_category_meals">
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mealDetailsFragment"
+        android:name="com.siam.mealcraft.presentation.meal_details.MealDetailsFragment"
+        android:label="Meal Details"
+        tools:layout="@layout/fragment_meal_details">
+        <argument
+            android:name="mealId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

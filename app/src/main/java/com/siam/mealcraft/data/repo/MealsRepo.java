@@ -33,6 +33,34 @@ public class MealsRepo {
                 .subscribeOn(Schedulers.io())
                 .map(response -> response.categories);
     }
+
+    public Single<com.siam.mealcraft.data.models.meal.MealsResponse> getMealDetails(String mealId) {
+        return remoteDataSource.getMealDetails(mealId).subscribeOn(Schedulers.io());
+    }
+
+    public Single<com.siam.mealcraft.data.models.meal.FilteredMealsResponse> filterMealsByCategory(String category) {
+        return remoteDataSource.filterMealsByCategory(category).subscribeOn(Schedulers.io());
+    }
+
+    public io.reactivex.rxjava3.core.Completable insertMeal(com.siam.mealcraft.data.models.meal.MealEntity meal) {
+        return localDataSource.insertMeal(meal).subscribeOn(Schedulers.io());
+    }
+
+    public io.reactivex.rxjava3.core.Completable addToFavourites(String mealId) {
+        return localDataSource.addToFavourites(mealId).subscribeOn(Schedulers.io());
+    }
+
+    public io.reactivex.rxjava3.core.Completable removeFromFavourites(String mealId) {
+        return localDataSource.removeFromFavourites(mealId).subscribeOn(Schedulers.io());
+    }
+
+    public Single<Boolean> isFavourite(String mealId) {
+        return localDataSource.isFavourite(mealId).subscribeOn(Schedulers.io());
+    }
+
+    public io.reactivex.rxjava3.core.Observable<List<com.siam.mealcraft.data.models.fav.FavouriteWithMeal>> getAllFavourites() {
+        return localDataSource.getAllFavourites().subscribeOn(Schedulers.io());
+    }
     
 
 }

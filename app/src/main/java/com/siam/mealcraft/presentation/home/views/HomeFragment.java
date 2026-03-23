@@ -23,6 +23,7 @@ import com.siam.mealcraft.data.models.meal.MealDto;
 import com.siam.mealcraft.presentation.home.presenter.HomePresenter;
 import com.siam.mealcraft.presentation.home.presenter.HomePresenterImpl;
 
+import androidx.navigation.Navigation;
 import java.util.Calendar;
 import java.util.List;
 
@@ -92,7 +93,9 @@ private void setupCategoriesRecyclerView() {
     categoriesRecyclerView.setNestedScrollingEnabled(false);
 
     categoryAdapter = new CategoryAdapter(category -> {
-  
+        Bundle bundle = new Bundle();
+        bundle.putString("categoryName", category.name);
+        Navigation.findNavController(requireView()).navigate(R.id.categoryMealsFragment, bundle);
     });
     categoriesRecyclerView.setAdapter(categoryAdapter);
 }
@@ -116,8 +119,10 @@ private void setupCategoriesRecyclerView() {
                 .into(image);
 
         mealOfTheDayCard.setOnClickListener(v -> {
-    
-        });
+            Bundle bundle = new Bundle();
+            bundle.putString("mealId", meal.id);
+            Navigation.findNavController(requireView()).navigate(R.id.mealDetailsFragment, bundle);
+    });
     }
 
  
