@@ -75,6 +75,14 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null) {
+            adapter.setFavouriteIds(com.siam.mealcraft.data.repo.FavouriteStateManager.getInstance().getCurrentFavourites());
+        }
+    }
+
+    @Override
     public void showMeals(List<FilteredMeal> meals) {
         errorText.setVisibility(View.GONE);
         rvMeals.setVisibility(View.VISIBLE);
@@ -83,7 +91,6 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
         }, presenter::toggleFavourite);
         rvMeals.setAdapter(adapter);
 
-        // Initialize icons for the current favourite state.
         adapter.setFavouriteIds(com.siam.mealcraft.data.repo.FavouriteStateManager.getInstance().getCurrentFavourites());
     }
 
