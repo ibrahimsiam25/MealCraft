@@ -33,5 +33,6 @@ public class MealsRepo {
                 .subscribeOn(Schedulers.io())
                 .map(response -> response.categories);
     }
+    
 
 }

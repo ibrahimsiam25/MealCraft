@@ -15,4 +15,5 @@ public class CategoryDto {
 
     @SerializedName("strCategoryDescription")
     public String description;
+
 }
