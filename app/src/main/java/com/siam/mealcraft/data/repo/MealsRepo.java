@@ -5,15 +5,17 @@ import android.content.Context;
 import com.siam.mealcraft.data.datasource.local.MealLocalDataSource;
 import com.siam.mealcraft.data.datasource.remote.MealRemoteDataSource;
 import com.siam.mealcraft.data.models.category.CategoryDto;
-import com.siam.mealcraft.data.models.fav.FavouriteWithMeal;
+import com.siam.mealcraft.data.models.meal.MealEntity;
 import com.siam.mealcraft.data.models.meal.FilteredMealsResponse;
 import com.siam.mealcraft.data.models.meal.MealDto;
 import com.siam.mealcraft.data.models.meal.MealEntity;
 import com.siam.mealcraft.data.models.meal.MealsResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
@@ -54,38 +56,31 @@ public class MealsRepo {
         return remoteDataSource.searchMealsByName(name).subscribeOn(Schedulers.io());
     }
 
-    public Completable insertMeal(MealEntity meal) {
-        return localDataSource.insertMeal(meal).subscribeOn(Schedulers.io());
-    }
-
-    public Completable addToFavourites(String mealId) {
-        return localDataSource.addToFavourites(mealId).subscribeOn(Schedulers.io());
-    }
-
-    public Completable removeFromFavourites(String mealId) {
-        return localDataSource.removeFromFavourites(mealId).subscribeOn(Schedulers.io());
-    }
 
     public Single<Boolean> isFavourite(String mealId) {
         return localDataSource.isFavourite(mealId).subscribeOn(Schedulers.io());
     }
 
-    public Observable<List<FavouriteWithMeal>> getAllFavourites() {
-        return localDataSource.getAllFavourites().subscribeOn(Schedulers.io());
+
+    
+    public Observable<List<MealEntity>> getFavorites() {
+        return localDataSource.getAllFavourites()
+                .subscribeOn(Schedulers.io());
     }
 
-    public Completable syncFavourites( ) {
-        return localDataSource.getAllFavourites()
-                .firstOrError()
-                .flatMapCompletable(favourites -> {
-                    Set<String> ids = new HashSet<>();
-                    for (FavouriteWithMeal fav : favourites) {
-                        ids.add(fav.favourite.getMealId());
+    public Completable toggleFavorite(MealEntity meal) {
+        return localDataSource.isFavourite(meal.getId())
+                .flatMapCompletable(isFav -> {
+                    if (isFav) {
+                        return localDataSource.removeFromFavourites(meal.getId());
+                    } else {
+                        return localDataSource.insertMeal(meal)
+                                .andThen(localDataSource.addToFavourites(meal.getId()));
                     }
-                    FavouriteStateManager.getInstance().updateFavouriteIds(ids);
-                    return Completable.complete();
                 })
                 .subscribeOn(Schedulers.io());
     }
+
+
 }
 

@@ -1,12 +1,10 @@
-package com.siam.mealcraft.data.models.fav;
+package com.siam.mealcraft.data.models.meal;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-
-import com.siam.mealcraft.data.models.meal.MealEntity;
 
 
 @Entity(
@@ -26,8 +24,7 @@ public class FavouriteEntity {
 
     private long timestamp;
 
-    public FavouriteEntity() {
-    }
+
 
     public FavouriteEntity(@NonNull String mealId, long timestamp) {
         this.mealId = mealId;
@@ -47,7 +44,4 @@ public class FavouriteEntity {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
 }

@@ -11,7 +11,6 @@ import java.util.Set;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import com.siam.mealcraft.data.repo.FavouriteStateManager;
 import com.siam.mealcraft.presentation.category_meals.views.ICategoryMealsView;
 
 public class CategoryMealsPresenter implements ICategoryMealsPresenter {
@@ -52,48 +51,7 @@ public class CategoryMealsPresenter implements ICategoryMealsPresenter {
         );
     }
 
-    @Override
-    public void toggleFavourite(FilteredMeal meal) {
-    
-        disposable.add(
-            repo.isFavourite(meal.getIdMeal())
-                .subscribeOn(Schedulers.io())
-                .flatMapCompletable(isFav -> {
-                    if (isFav) {
-                        return repo.removeFromFavourites(meal.getIdMeal());
-                    } else {
-                        MealEntity entity = new MealEntity();
-                        entity.setId(meal.getIdMeal());
-                        entity.setName(meal.getStrMeal());
-                        entity.setThumbnail(meal.getStrMealThumb());
-                        return repo.insertMeal(entity)
-                                   .andThen(repo.addToFavourites(meal.getIdMeal()));
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        () -> {
-                          
-                            repo.syncFavourites().subscribe();
-                     
-                            try {
-                              Set<String> current = FavouriteStateManager.getInstance().getCurrentFavourites();
-                             Set<String> updated = new HashSet<>(current);
-                                if (repo != null && meal != null) {
-                                    if (current.contains(meal.getIdMeal())) {
-                                        updated.remove(meal.getIdMeal());
-                                    } else {
-                                        updated.add(meal.getIdMeal());
-                                    }
-                                    FavouriteStateManager.getInstance().updateFavouriteIds(updated);
-                                }
-                            } catch (Exception ignored) {
-                            }
-                        },
-                        error -> view.showError(error.getMessage())
-                )
-        );
-    }
+
 
     @Override
     public void onDestroy() {

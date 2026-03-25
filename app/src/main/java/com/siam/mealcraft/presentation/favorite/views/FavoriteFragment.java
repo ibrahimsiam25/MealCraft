@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.siam.mealcraft.R;
-import com.siam.mealcraft.data.models.fav.FavouriteWithMeal;
+import com.siam.mealcraft.data.models.meal.MealEntity;
 import com.siam.mealcraft.data.repo.MealsRepo;
 import com.siam.mealcraft.presentation.favorite.presenter.FavouritePresenter;
 import com.siam.mealcraft.presentation.favorite.presenter.IFavouritePresenter;
@@ -69,7 +69,7 @@ public class FavoriteFragment extends Fragment implements IFavouriteView, Favour
     }
 
     @Override
-    public void showFavourites(List<FavouriteWithMeal> favourites) {
+    public void showFavourites(List<MealEntity> favourites) {
         if (favourites == null || favourites.isEmpty()) {
             tvEmptyState.setVisibility(View.VISIBLE);
             rvFavourites.setVisibility(View.GONE);
@@ -94,10 +94,6 @@ public class FavoriteFragment extends Fragment implements IFavouriteView, Favour
         Navigation.findNavController(requireView()).navigate(R.id.action_favoriteFragment_to_mealDetailsFragment, bundle);
     }
 
-    @Override
-    public void onFavouriteClick(String mealId) {
-        presenter.removeFavourite(mealId);
-    }
 
     @Override
     public void onDestroy() {

@@ -21,21 +21,14 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
 
     private final List<FilteredMeal> meals;
     private final OnMealClickListener clickListener;
-    private final OnFavouriteClickListener favClickListener;
-    private Set<String> favoriteIds = new HashSet<>();
 
     public interface OnMealClickListener {
         void onMealClick(FilteredMeal meal);
     }
 
-    public interface OnFavouriteClickListener {
-        void onFavouriteClick(FilteredMeal meal);
-    }
-
-    public CategoryMealsAdapter(List<FilteredMeal> meals, OnMealClickListener clickListener, OnFavouriteClickListener favClickListener) {
+    public CategoryMealsAdapter(List<FilteredMeal> meals, OnMealClickListener clickListener) {
         this.meals = meals;
         this.clickListener = clickListener;
-        this.favClickListener = favClickListener;
     }
 
     @NonNull
@@ -55,11 +48,7 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
              .into(holder.imgMeal);
 
 
-        boolean isFav = favoriteIds.contains(meal.getIdMeal());
-        holder.btnFav.setImageResource(isFav ? R.drawable.ic_favorite : R.drawable.ic_favorite_border);
-
         holder.itemView.setOnClickListener(v -> clickListener.onMealClick(meal));
-        holder.btnFav.setOnClickListener(v -> favClickListener.onFavouriteClick(meal));
     }
 
     @Override
@@ -67,20 +56,13 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
         return meals != null ? meals.size() : 0;
     }
 
-    public void setFavouriteIds(Set<String> favoriteIds) {
-        this.favoriteIds = favoriteIds != null ? favoriteIds : new HashSet<>();
-        notifyDataSetChanged();
-    }
-
     static class MealViewHolder extends RecyclerView.ViewHolder {
         ImageView imgMeal;
-        ImageView btnFav;
         TextView tvMealName;
 
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
             imgMeal = itemView.findViewById(R.id.imgMeal);
-            btnFav = itemView.findViewById(R.id.btnFav);
             tvMealName = itemView.findViewById(R.id.tvMealName);
         }
     }

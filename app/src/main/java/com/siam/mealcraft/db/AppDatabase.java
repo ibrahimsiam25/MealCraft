@@ -9,7 +9,7 @@ import androidx.room.TypeConverters;
 
 import com.siam.mealcraft.data.datasource.local.FavouriteDao;
 import com.siam.mealcraft.data.datasource.local.MealDao;
-import com.siam.mealcraft.data.models.fav.FavouriteEntity;
+import com.siam.mealcraft.data.models.meal.FavouriteEntity;
 import com.siam.mealcraft.data.models.meal.MealEntity;
 
 

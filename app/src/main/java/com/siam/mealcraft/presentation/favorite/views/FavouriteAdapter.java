@@ -11,26 +11,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.siam.mealcraft.R;
-import com.siam.mealcraft.data.models.fav.FavouriteWithMeal;
+import com.siam.mealcraft.data.models.meal.MealEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder> {
 
-    private List<FavouriteWithMeal> meals = new ArrayList<>();
+    private List<MealEntity> meals = new ArrayList<>();
     private final OnMealClickListener listener;
 
     public interface OnMealClickListener {
         void onMealClick(String mealId);
-        void onFavouriteClick(String mealId);
     }
 
     public FavouriteAdapter(OnMealClickListener listener) {
         this.listener = listener;
     }
 
-    public void setMeals(List<FavouriteWithMeal> meals) {
+    public void setMeals(List<MealEntity> meals) {
         this.meals = meals;
         notifyDataSetDataSetChanged();
     }
@@ -48,16 +47,13 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        FavouriteWithMeal item = meals.get(position);
-        holder.tvMealName.setText(item.meal.getName());
+        MealEntity item = meals.get(position);
+        holder.tvMealName.setText(item.getName());
         Glide.with(holder.itemView.getContext())
-                .load(item.meal.getThumbnail())
-                .into(holder.imgMeal);
+            .load(item.getThumbnail())
+            .into(holder.imgMeal);
 
-        holder.btnFav.setImageResource(R.drawable.ic_favorite);
-
-        holder.itemView.setOnClickListener(v -> listener.onMealClick(item.meal.getId()));
-        holder.btnFav.setOnClickListener(v -> listener.onFavouriteClick(item.meal.getId()));
+        holder.itemView.setOnClickListener(v -> listener.onMealClick(item.getId()));
     }
 
     @Override
@@ -66,13 +62,12 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgMeal, btnFav;
+        ImageView imgMeal;
         TextView tvMealName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgMeal = itemView.findViewById(R.id.imgMeal);
-            btnFav = itemView.findViewById(R.id.btnFav);
             tvMealName = itemView.findViewById(R.id.tvMealName);
         }
     }

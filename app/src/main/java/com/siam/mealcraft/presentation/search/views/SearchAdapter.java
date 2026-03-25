@@ -52,8 +52,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 .load(meal.thumbnail)
                 .into(holder.imgMeal);
 
-        holder.btnFav.setImageResource(R.drawable.ic_favorite_border);
-
         holder.itemView.setOnClickListener(v -> listener.onMealClick(meal.id));
     }
 
@@ -64,13 +62,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     static class SearchViewHolder extends RecyclerView.ViewHolder {
         ImageView imgMeal;
-        ImageView btnFav;
         TextView tvMealName;
 
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
             imgMeal = itemView.findViewById(R.id.imgMeal);
-            btnFav = itemView.findViewById(R.id.btnFav);
             tvMealName = itemView.findViewById(R.id.tvMealName);
         }
     }

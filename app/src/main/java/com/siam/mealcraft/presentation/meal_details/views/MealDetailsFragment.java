@@ -42,7 +42,6 @@ public class MealDetailsFragment extends Fragment implements IMealDetailsView {
     private MealDto currentMeal;
     private boolean isCurrentlyFav = false;
 
-    // ─────────────────────────────────────────
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

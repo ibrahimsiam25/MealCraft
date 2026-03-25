@@ -3,8 +3,7 @@ package com.siam.mealcraft.data.datasource.local;
 import android.content.Context;
 
 
-import com.siam.mealcraft.data.models.fav.FavouriteEntity;
-import com.siam.mealcraft.data.models.fav.FavouriteWithMeal;
+import com.siam.mealcraft.data.models.meal.FavouriteEntity;
 import com.siam.mealcraft.data.models.meal.MealEntity;
 import com.siam.mealcraft.db.AppDatabase;
 
@@ -45,7 +44,7 @@ public class MealLocalDataSource {
         return favouriteDao.isFavourite(mealId);
     }
 
-    public Observable<List<FavouriteWithMeal>> getAllFavourites() {
+    public Observable<List<MealEntity>> getAllFavourites() {
         return favouriteDao.getAllFavouritesWithMeals();
     }
 }

@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.siam.mealcraft.R;
 import com.siam.mealcraft.data.models.meal.FilteredMeal;
-import com.siam.mealcraft.data.repo.FavouriteStateManager;
+// favourites handled in details screen only
 import com.siam.mealcraft.data.repo.MealsRepo;
 import com.siam.mealcraft.presentation.category_meals.presenter.CategoryMealsPresenter;
 import com.siam.mealcraft.presentation.category_meals.presenter.ICategoryMealsPresenter;
@@ -37,7 +37,6 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
     private Toolbar toolbar;
     private String categoryName;
     private CategoryMealsAdapter adapter;
-    private Disposable favStateDisposable;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,36 +67,16 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
 
         rvMeals.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
-        favStateDisposable = FavouriteStateManager.getInstance()
-                .getFavouriteIds()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ids -> {
-                    if (adapter != null) {
-                        adapter.setFavouriteIds(ids);
-                    }
-                });
-
         presenter.loadMeals(categoryName);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (adapter != null) {
-            adapter.setFavouriteIds(FavouriteStateManager.getInstance().getCurrentFavourites());
-        }
-    }
 
     @Override
     public void showMeals(List<FilteredMeal> meals) {
         errorText.setVisibility(View.GONE);
         rvMeals.setVisibility(View.VISIBLE);
-        adapter = new CategoryMealsAdapter(meals, meal -> {
-            navigateToDetails(meal.getIdMeal());
-        }, presenter::toggleFavourite);
+        adapter = new CategoryMealsAdapter(meals, meal -> navigateToDetails(meal.getIdMeal()));
         rvMeals.setAdapter(adapter);
-
-        adapter.setFavouriteIds(FavouriteStateManager.getInstance().getCurrentFavourites());
     }
 
     @Override
@@ -129,9 +108,6 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (favStateDisposable != null && !favStateDisposable.isDisposed()) {
-            favStateDisposable.dispose();
-        }
         presenter.onDestroy();
     }
 }

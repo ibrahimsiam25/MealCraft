@@ -52,36 +52,19 @@ public class MealDetailsPresenter implements IMealDetailsPresenter {
 
     @Override
     public void toggleFavourite(MealDto meal) {
+        MealEntity entity = new MealEntity();
+        entity.setId(meal.id);
+        entity.setName(meal.name);
+        entity.setThumbnail(meal.thumbnail);
+
         disposable.add(
-            repo.isFavourite(meal.id)
-                .subscribeOn(Schedulers.io())
-                .flatMapCompletable(isFav -> {
-                    if (isFav) {
-                        return repo.removeFromFavourites(meal.id);
-                    } else {
-                        MealEntity entity = new MealEntity();
-                        entity.setId(meal.id);
-                        entity.setName(meal.name);
-                        entity.setThumbnail(meal.thumbnail);
-                        return repo.insertMeal(entity)
-                                   .andThen(repo.addToFavourites(meal.id));
-                    }
-                })
+            repo.toggleFavorite(entity)
+                .observeOn(AndroidSchedulers.mainThread())
+                .andThen(repo.isFavourite(meal.id).subscribeOn(Schedulers.io()))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> {
-                       
-                            disposable.add(
-                                repo.isFavourite(meal.id)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(
-                                        isFav -> view.setFavouriteIcon(isFav),
-                                        err -> {}
-                                    )
-                            );
-                        },
-                        error -> view.showError(error.getMessage())
+                    isFav -> view.setFavouriteIcon(isFav),
+                    error -> view.showError(error.getMessage())
                 )
         );
     }

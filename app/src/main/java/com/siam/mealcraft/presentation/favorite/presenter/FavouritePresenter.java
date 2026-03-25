@@ -20,7 +20,7 @@ public class FavouritePresenter implements IFavouritePresenter {
     @Override
     public void getFavourites() {
         view.showLoading();
-        disposables.add(mealsRepo.getAllFavourites()
+        disposables.add(mealsRepo.getFavorites()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         favourites -> {
@@ -31,18 +31,6 @@ public class FavouritePresenter implements IFavouritePresenter {
                             view.hideLoading();
                             view.showError(error.getMessage());
                         }
-                ));
-    }
-
-    @Override
-    public void removeFavourite(String mealId) {
-        disposables.add(mealsRepo.removeFromFavourites(mealId)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        () -> {
-                            mealsRepo.syncFavourites().subscribe();
-                        },
-                        error -> view.showError(error.getMessage())
                 ));
     }
 
