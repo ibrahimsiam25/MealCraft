@@ -3,7 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Primary - Green -->
     <color name="primary">#206223</color>
     <color name="primary_container">#3A7B3A</color>
     <color name="primary_fixed">#ACF4A4</color>
@@ -13,7 +12,6 @@
     <color name="on_primary_fixed_variant">#0C5216</color>
     <color name="inverse_primary">#91D78A</color>
 
-    <!-- Secondary - Muted Green -->
     <color name="secondary">#556158</color>
     <color name="secondary_container">#D9E6DA</color>
     <color name="secondary_fixed">#D9E6DA</color>
@@ -23,7 +21,6 @@
     <color name="on_secondary_fixed">#131E17</color>
     <color name="on_secondary_fixed_variant">#3E4A41</color>
 
-    <!-- Tertiary - Warm Brown -->
     <color name="tertiary">#5C5547</color>
     <color name="tertiary_container">#756D5E</color>
     <color name="tertiary_fixed">#EDE1CF</color>
@@ -33,7 +30,7 @@
     <color name="on_tertiary_fixed">#201B10</color>
     <color name="on_tertiary_fixed_variant">#4D4638</color>
 
-    <!-- Surface -->
+
     <color name="surface">#FCF9F8</color>
     <color name="surface_bright">#FCF9F8</color>
     <color name="surface_dim">#DCD9D9</color>
@@ -45,21 +42,21 @@
     <color name="surface_container_highest">#E5E2E1</color>
     <color name="surface_container_lowest">#FFFFFF</color>
 
-    <!-- On Surface -->
+
     <color name="on_surface">#1C1B1B</color>
     <color name="on_surface_variant">#40493D</color>
     <color name="inverse_surface">#313030</color>
     <color name="inverse_on_surface">#F3F0EF</color>
 
-    <!-- Background -->
+  
     <color name="background">#FCF9F8</color>
     <color name="on_background">#1C1B1B</color>
 
-    <!-- Outline -->
+
     <color name="outline">#707A6C</color>
     <color name="outline_variant">#BFCABA</color>
 
-    <!-- Error -->
+  
     <color name="error">#BA1A1A</color>
     <color name="error_container">#FFDAD6</color>
     <color name="on_error">#FFFFFF</color>

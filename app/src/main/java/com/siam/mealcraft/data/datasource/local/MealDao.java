@@ -4,12 +4,10 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
-import androidx.room.Query;
-
 
 import com.siam.mealcraft.data.models.meal.MealEntity;
 
-import java.util.List;
+
 
 import io.reactivex.rxjava3.core.Completable;
 

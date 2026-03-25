@@ -1,6 +1,8 @@
-package com.siam.mealcraft.presentation.search;
+package com.siam.mealcraft.presentation.search.presenter;
 
 import com.siam.mealcraft.data.repo.MealsRepo;
+import com.siam.mealcraft.presentation.search.views.ISearchView;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 

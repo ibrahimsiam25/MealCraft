@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.search;
+package com.siam.mealcraft.presentation.search.presenter;
 
 public interface ISearchPresenter {
     void searchMeals(String query);

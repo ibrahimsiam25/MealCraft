@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.category_meals;
+package com.siam.mealcraft.presentation.category_meals.views;
 
 import com.siam.mealcraft.data.models.meal.FilteredMeal;
 import java.util.List;

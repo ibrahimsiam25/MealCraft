@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.category_meals;
+package com.siam.mealcraft.presentation.category_meals.views;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,8 +54,7 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
              .load(meal.getStrMealThumb())
              .into(holder.imgMeal);
 
-        // Intial favored state to be configured appropriately (if list contains fav state) 
-        // For now, use border. The presenter can update the state.
+
         boolean isFav = favoriteIds.contains(meal.getIdMeal());
         holder.btnFav.setImageResource(isFav ? R.drawable.ic_favorite : R.drawable.ic_favorite_border);
 

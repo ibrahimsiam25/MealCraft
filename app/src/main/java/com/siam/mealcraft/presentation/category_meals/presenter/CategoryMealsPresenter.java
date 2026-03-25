@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.category_meals;
+package com.siam.mealcraft.presentation.category_meals.presenter;
 
 import com.siam.mealcraft.data.models.meal.FilteredMeal;
 import com.siam.mealcraft.data.models.meal.MealEntity;
@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import com.siam.mealcraft.data.repo.FavouriteStateManager;
+import com.siam.mealcraft.presentation.category_meals.views.ICategoryMealsView;
 
 public class CategoryMealsPresenter implements ICategoryMealsPresenter {
     private final ICategoryMealsView view;

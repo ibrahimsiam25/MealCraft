@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.search;
+package com.siam.mealcraft.presentation.search.views;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.category_meals;
+package com.siam.mealcraft.presentation.category_meals.views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,9 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.siam.mealcraft.R;
 import com.siam.mealcraft.data.models.meal.FilteredMeal;
+import com.siam.mealcraft.data.repo.FavouriteStateManager;
 import com.siam.mealcraft.data.repo.MealsRepo;
+import com.siam.mealcraft.presentation.category_meals.presenter.CategoryMealsPresenter;
+import com.siam.mealcraft.presentation.category_meals.presenter.ICategoryMealsPresenter;
 
 import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class CategoryMealsFragment extends Fragment implements ICategoryMealsView {
 
@@ -31,7 +37,7 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
     private Toolbar toolbar;
     private String categoryName;
     private CategoryMealsAdapter adapter;
-    private io.reactivex.rxjava3.disposables.Disposable favStateDisposable;
+    private Disposable favStateDisposable;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,9 +68,9 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
 
         rvMeals.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
-        favStateDisposable = com.siam.mealcraft.data.repo.FavouriteStateManager.getInstance()
+        favStateDisposable = FavouriteStateManager.getInstance()
                 .getFavouriteIds()
-                .observeOn(io.reactivex.rxjava3.android.schedulers.AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ids -> {
                     if (adapter != null) {
                         adapter.setFavouriteIds(ids);
@@ -78,7 +84,7 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
     public void onResume() {
         super.onResume();
         if (adapter != null) {
-            adapter.setFavouriteIds(com.siam.mealcraft.data.repo.FavouriteStateManager.getInstance().getCurrentFavourites());
+            adapter.setFavouriteIds(FavouriteStateManager.getInstance().getCurrentFavourites());
         }
     }
 
@@ -91,7 +97,7 @@ public class CategoryMealsFragment extends Fragment implements ICategoryMealsVie
         }, presenter::toggleFavourite);
         rvMeals.setAdapter(adapter);
 
-        adapter.setFavouriteIds(com.siam.mealcraft.data.repo.FavouriteStateManager.getInstance().getCurrentFavourites());
+        adapter.setFavouriteIds(FavouriteStateManager.getInstance().getCurrentFavourites());
     }
 
     @Override

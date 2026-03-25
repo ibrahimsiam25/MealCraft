@@ -1,6 +1,8 @@
-package com.siam.mealcraft.presentation.favorite;
+package com.siam.mealcraft.presentation.favorite.presenter;
 
 import com.siam.mealcraft.data.repo.MealsRepo;
+import com.siam.mealcraft.presentation.favorite.views.IFavouriteView;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 

@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.favorite;
+package com.siam.mealcraft.presentation.favorite.views;
 
 import com.siam.mealcraft.data.models.fav.FavouriteWithMeal;
 import java.util.List;

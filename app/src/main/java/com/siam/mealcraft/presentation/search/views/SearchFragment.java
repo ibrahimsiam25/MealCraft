@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.search;
+package com.siam.mealcraft.presentation.search.views;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,7 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.siam.mealcraft.R;
 import com.siam.mealcraft.data.models.meal.MealDto;
 import com.siam.mealcraft.data.repo.MealsRepo;
-import com.siam.mealcraft.presentation.search.SearchAdapter;
+import com.siam.mealcraft.presentation.search.presenter.SearchPresenter;
+import com.siam.mealcraft.presentation.search.presenter.ISearchPresenter;
 
 import java.util.Collections;
 import java.util.List;

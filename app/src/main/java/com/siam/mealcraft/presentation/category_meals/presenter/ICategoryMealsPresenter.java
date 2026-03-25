@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.category_meals;
+package com.siam.mealcraft.presentation.category_meals.presenter;
 
 import com.siam.mealcraft.data.models.meal.FilteredMeal;
 

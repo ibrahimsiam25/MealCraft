@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.favorite;
+package com.siam.mealcraft.presentation.favorite.views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.siam.mealcraft.R;
 import com.siam.mealcraft.data.models.fav.FavouriteWithMeal;
 import com.siam.mealcraft.data.repo.MealsRepo;
+import com.siam.mealcraft.presentation.favorite.presenter.FavouritePresenter;
+import com.siam.mealcraft.presentation.favorite.presenter.IFavouritePresenter;
 
 import java.util.List;
 

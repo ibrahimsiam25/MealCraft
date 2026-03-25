@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.search;
+package com.siam.mealcraft.presentation.search.views;
 
 import com.siam.mealcraft.data.models.meal.MealDto;
 import java.util.List;

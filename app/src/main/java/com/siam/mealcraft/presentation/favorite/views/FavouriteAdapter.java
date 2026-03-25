@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.favorite;
+package com.siam.mealcraft.presentation.favorite.views;
 
 import android.view.LayoutInflater;
 import android.view.View;
