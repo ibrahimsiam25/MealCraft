@@ -108,17 +108,20 @@
                 android:textColor="@color/on_surface"
                 tools:text="Wash and thoroughly dry your heirloom greens..." />
 
-            <!-- We can add Youtube button here -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnYoutube"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:icon="@drawable/ic_play"
-                android:text="Watch Technique"
-                app:backgroundTint="@color/primary"
-                android:textColor="@color/on_primary" />
+            <!-- YouTube inline player placed below; external launch button removed per UX request -->
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="12dp">
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtubePlayerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+
+            </FrameLayout>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -57,10 +57,11 @@ dependencies {
     implementation(libs.recyclerview)
     implementation(libs.glide)
     implementation(libs.lottie)
-
+    implementation(libs.core)
     // Navigation
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -70,4 +71,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }
