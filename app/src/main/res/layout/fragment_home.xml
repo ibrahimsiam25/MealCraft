@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:paddingBottom="100dp">
 
-        <!-- Greeting -->
+
         <TextView
             android:id="@+id/greetingText"
             android:layout_width="wrap_content"
