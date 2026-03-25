@@ -70,7 +70,7 @@ public class MealDetailsPresenter implements IMealDetailsPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> {
-                            // Fetch updated fav state
+                       
                             disposable.add(
                                 repo.isFavourite(meal.id)
                                     .subscribeOn(Schedulers.io())

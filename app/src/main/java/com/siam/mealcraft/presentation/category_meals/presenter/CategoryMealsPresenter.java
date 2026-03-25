@@ -75,8 +75,8 @@ public class CategoryMealsPresenter implements ICategoryMealsPresenter {
                             repo.syncFavourites().subscribe();
                      
                             try {
-                                java.util.Set<String> current = FavouriteStateManager.getInstance().getCurrentFavourites();
-                                java.util.Set<String> updated = new java.util.HashSet<>(current);
+                              Set<String> current = FavouriteStateManager.getInstance().getCurrentFavourites();
+                             Set<String> updated = new HashSet<>(current);
                                 if (repo != null && meal != null) {
                                     if (current.contains(meal.getIdMeal())) {
                                         updated.remove(meal.getIdMeal());

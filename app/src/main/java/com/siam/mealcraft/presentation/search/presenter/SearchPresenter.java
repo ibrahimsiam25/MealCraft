@@ -31,7 +31,7 @@ public class SearchPresenter implements ISearchPresenter {
                             if (response.meals != null) {
                                 view.showMeals(response.meals);
                             } else {
-                                view.showMeals(java.util.Collections.emptyList());
+                                view.showMeals(Collections.emptyList());
                             }
                         },
                         error -> {
