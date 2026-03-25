@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.meal_details;
+package com.siam.mealcraft.presentation.meal_details.views;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +24,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+import com.siam.mealcraft.presentation.meal_details.presneter.IMealDetailsPresenter;
+import com.siam.mealcraft.presentation.meal_details.presneter.MealDetailsPresenter;
 
 public class MealDetailsFragment extends Fragment implements IMealDetailsView {
 

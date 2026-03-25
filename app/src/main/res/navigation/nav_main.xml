@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/mealDetailsFragment"
-        android:name="com.siam.mealcraft.presentation.meal_details.MealDetailsFragment"
+        android:name="com.siam.mealcraft.presentation.meal_details.views.MealDetailsFragment"
         android:label="Meal Details"
         tools:layout="@layout/fragment_meal_details">
         <argument

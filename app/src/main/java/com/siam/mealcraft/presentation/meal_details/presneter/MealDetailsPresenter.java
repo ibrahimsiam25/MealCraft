@@ -1,8 +1,9 @@
-package com.siam.mealcraft.presentation.meal_details;
+package com.siam.mealcraft.presentation.meal_details.presneter;
 
 import com.siam.mealcraft.data.models.meal.MealDto;
 import com.siam.mealcraft.data.models.meal.MealEntity;
 import com.siam.mealcraft.data.repo.MealsRepo;
+import com.siam.mealcraft.presentation.meal_details.views.IMealDetailsView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;

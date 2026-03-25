@@ -1,4 +1,4 @@
-package com.siam.mealcraft.presentation.meal_details;
+package com.siam.mealcraft.presentation.meal_details.views;
 
 import com.siam.mealcraft.data.models.meal.MealDto;
 
